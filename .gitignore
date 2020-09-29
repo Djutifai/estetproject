@@ -28,8 +28,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/windows
-/.vs/testRogue/v15
-/game/.vs
+/estet/.vs
 
 bin/
 obj/
