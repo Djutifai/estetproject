@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace estet
+namespace estet.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GreetPage : ContentPage
+	public partial class RegistrationPage : ContentPage
 	{
-		public GreetPage ()
+		public RegistrationPage ()
 		{
 			InitializeComponent ();
 		}
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Title", "hello guys :)", "OK");
-        }
-    }
+	}
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using estet.Pages;
+using estet.Classes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace estet
@@ -11,7 +13,7 @@ namespace estet
         {
             InitializeComponent();
 
-            MainPage = new GreetPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
