@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,14 +7,22 @@ namespace estet.Classes
 {
     public class User
     {
-        public string Id { get; set; }
+        [PrimaryKey]
+        public int Id { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
 
         public User() { }
+        
+        public User(string Mail, string Password)
+        {
+            this.Mail = Mail;
+            this.Password = Password;
 
-        public User(string Password, string PhoneNumber, string Mail)
+        }
+
+        public User(string Mail, string Password, string PhoneNumber)
         {
             this.Mail = Mail;
             this.Password = Password;
@@ -21,12 +30,12 @@ namespace estet.Classes
             
         }
 
-        public bool CheckLogInfo()
+        public bool CheckIfEmpty()
         {
             if (!Mail.Equals("") || !Password.Equals(""))
-                return true;
-            else
                 return false;
+            else
+                return true;
         }
 
         public bool CheckRegInfo()

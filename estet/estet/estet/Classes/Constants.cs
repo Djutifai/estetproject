@@ -9,5 +9,10 @@ namespace estet.Classes
     {
         public static Color BackgroundColor = Color.FromRgb(22, 30, 43);
         public static Color TextColor = Color.GhostWhite;
+        public static Color EntriesColor = Color.FromRgb(245, 183, 59);
+
+
+        public static int Logoheight = 103;
+        public static int Logowidth = 100;
     }
 }
