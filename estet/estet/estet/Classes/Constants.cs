@@ -12,7 +12,10 @@ namespace estet.Classes
         public static Color EntriesColor = Color.FromRgb(245, 183, 59);
 
 
-        public static int Logoheight = 103;
-        public static int Logowidth = 100;
+        public static int SmallLogoheight = 67;
+        public static int SmallLogowidth = 70;
+
+        public static int BigLogoheight = 100;
+        public static int BigLogowidth = 103;
     }
 }

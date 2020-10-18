@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="estet.Pages.LogPages.RegistrationPage"
+             Title="Estet-Design">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout x:Name="LogoLayout" VerticalOptions="FillAndExpand">
+                <Image x:Name="LogoIcon" Source="logo.png" Margin="0,20,0,0"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+                <StackLayout x:Name="RegEntries" Margin="15,0,15,0" >
+                    <!-- Registration begins-->
+                    <StackLayout.Padding>
+                        <OnIdiom x:TypeArguments="Thickness" Phone="0,0,40,0" Tablet="140,150,140,0"/>
+                    </StackLayout.Padding>
+                    
+                    <Label x:Name="Lbl_Mail" Text="E-mail"  />
+                    <Entry x:Name="Entry_Mail" Placeholder="Введите адрес Вашей почты..." FontSize="10"/>
+                    <Label x:Name="Lbl_Phone" Text="Номер телефона"/>
+                    <Entry x:Name="Entry_Phone" Placeholder="Введите номер Вашего телефона. Пример: 79124345454..." MaxLength="11" FontSize="10"/>
+                    <Label x:Name="Lbl_Password" Text="Пароль"/>
+                    <Entry x:Name="Entry_Password" Placeholder="Введите пароль. Максимальная длина - 12 символов..." IsPassword="True" MaxLength="12" FontSize="10"/>
+                    <Label x:Name="Lbl_RePassword" Text="Повтор пароля" />
+                    <Entry x:Name="Entry_RePassword" Placeholder="Введите пароль повторно..." IsPassword="True" MaxLength="12" FontSize="10"/>
+
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" x:Name="RegBtns">
+                    <Button x:Name="RegBtn"  Text="Регистрация" Clicked="RegClick"/>
+                    <Button x:Name="CancelBtn" Text="Отмена" Clicked="CancelClick"/>
+                </StackLayout>
+                
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

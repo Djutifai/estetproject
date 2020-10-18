@@ -2,8 +2,10 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using estet.Pages;
+using estet.Pages.LogPages;
 using estet.Classes;
 using estet.Data;
+using System.Net.Http;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace estet
@@ -13,12 +15,14 @@ namespace estet
 
         static TokenDatabaseController tokenDatabase;
         static UserDatabaseController userDatabase;
+        private HttpClient _client = new HttpClient();
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new NavigationPage(new LoginPage());
+            
         }
 
         protected override void OnStart()
@@ -43,6 +47,10 @@ namespace estet
                 if (userDatabase == null)
                 {
                     userDatabase = new UserDatabaseController();
+                    if (!userDatabase.LoginValidate("admin", "admin"))
+                    {
+                        userDatabase.CreateAdmin();
+                    }
 
                 }
                 return userDatabase;

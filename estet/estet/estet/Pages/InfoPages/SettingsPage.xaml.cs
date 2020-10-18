@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace estet.Pages
+namespace estet.Pages.InfoPages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegistrationPage : ContentPage
+	public partial class SettingsPage : ContentPage
 	{
-		public RegistrationPage ()
+		public SettingsPage ()
 		{
 			InitializeComponent ();
 		}

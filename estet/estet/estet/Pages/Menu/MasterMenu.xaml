@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:estet.Pages"
+             xmlns:const="clr-namespace:estet.Classes"
+             x:Class="estet.Pages.Menu.MasterMenu">
+    
+    <MasterDetailPage.Master>
+        <ContentPage Title="Меню" BackgroundColor="#fdd22a">
+            <StackLayout Orientation="Vertical">
+                <!-- Below we are having side menu details -->
+
+                <StackLayout BackgroundColor="#fdd22a"
+                             HeightRequest="75">
+                    <Label Text="Добро пожаловать в Estet-DESIGN"  FontSize="20" HorizontalOptions="EndAndExpand"  VerticalOptions="Center" Margin="0,0,10,0" x:Name="welcomeText"/>
+                </StackLayout>
+                <ListView x:Name="mainMenuList"
+                          RowHeight="60"
+                          SeparatorVisibility="None"
+                          BackgroundColor="#161E2B"
+                          ItemSelected="OnMenuItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Orientation="Horizontal"
+                                             Padding="20,10,0,10"
+                                             Spacing="15">
+
+                                    <Image Source="{Binding IconSource}"
+                                           VerticalOptions="Center"/>
+
+                                    <Label Text="{Binding Title}"
+                                           FontSize="Medium"
+                                           VerticalOptions="Center"
+                                           TextColor="{x:Static const:Constants.TextColor}"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <local:OrderPage/>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

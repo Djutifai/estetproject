@@ -2,25 +2,28 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace estet.Classes
 {
     public class User
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
+        [JsonProperty("ID")]
         public int Id { get; set; }
+        [JsonProperty("MAIL")]
         public string Mail { get; set; }
+        [MaxLength(12)]
+        [JsonProperty("PASSWORD")]
         public string Password { get; set; }
+        [MaxLength(11)]
+        [JsonProperty("PHONENUMBER")]
         public string PhoneNumber { get; set; }
 
-        public User() { }
-        
-        public User(string Mail, string Password)
-        {
-            this.Mail = Mail;
-            this.Password = Password;
+        internal bool _isDev = false;
 
-        }
+        public User() { }
 
         public User(string Mail, string Password, string PhoneNumber)
         {
@@ -30,21 +33,6 @@ namespace estet.Classes
             
         }
 
-        public bool CheckIfEmpty()
-        {
-            if (!Mail.Equals("") || !Password.Equals(""))
-                return false;
-            else
-                return true;
-        }
-
-        public bool CheckRegInfo()
-        {
-            if (!Mail.Equals("") || !Password.Equals("")||PhoneNumber.Equals(""))
-                return true;
-            else
-                return false;
-
-        }
+       
     }
 }

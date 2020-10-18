@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="estet.Pages.LoginPage">
+             x:Class="estet.Pages.LogPages.LoginPage"
+             Title="Estet-Design">
     <StackLayout x:Name="MasterLayout" >
 
         <StackLayout x:Name="LogoLayout" VerticalOptions="FillAndExpand">
             <Image x:Name="LogoIcon" Source="logo.png" Margin="0,80,0,0"/>
         </StackLayout>
 
-        <StackLayout VerticalOptions="StartAndExpand">
+        <StackLayout VerticalOptions="StartAndExpand" >
             <StackLayout x:Name="LogEntries"   Margin="15,0,15,0" >
 
                 <StackLayout.Padding>
                     <OnIdiom x:TypeArguments="Thickness" Phone="40,0,40,0" Tablet="140,150,140,0"/>
                 </StackLayout.Padding>
-
                 <Label x:Name="Lbl_Mail" Text="Почта " />
                 <Entry x:Name="Entry_Mail" Placeholder="Введите Вашу почту"/>
                 <Label x:Name="Lbl_Password" Text="Пароль "/>
-                <Entry x:Name="Entry_Password" Placeholder="Пароль" IsPassword="True"/>
+                <Entry x:Name="Entry_Password" Placeholder="Пароль" IsPassword="True" MaxLength="12"/>
             </StackLayout>
 
-            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand" x:Name="LogBtns">
-                <Button x:Name="Btn_Signin" Text="Войти" Clicked="LoginClick"/>
-                <Button x:Name="Btn_Register" Text="Зарегистрироваться" Clicked="RegClick"/>
+            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand" x:Name="LogBtns" >
+                <Button x:Name="Btn_Signin" Text="Войти" Clicked="LoginClick" BorderRadius="9" BorderWidth="5" BorderColor="Navy"/>
+                <Button x:Name="Btn_Register" Text="Зарегистрироваться" Clicked="RegClick"  BorderRadius="9" BorderWidth="5" BorderColor="Navy"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>
