@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Rg.Plugins.Popup;
 
 namespace estet.iOS
 {
@@ -22,6 +23,7 @@ namespace estet.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

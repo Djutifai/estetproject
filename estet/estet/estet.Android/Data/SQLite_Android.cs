@@ -23,7 +23,7 @@ namespace estet.Droid.Data
         public SQLite_Android() { }
         public SQLite.SQLiteConnection GetConnection()
         {
-            var sqliteFileName = "DB.db3";
+            var sqliteFileName = "Database.db3";
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var path = Path.Combine(documentsPath, sqliteFileName);
             var conn = new SQLite.SQLiteConnection(path);

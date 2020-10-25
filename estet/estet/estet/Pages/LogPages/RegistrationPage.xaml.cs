@@ -38,31 +38,42 @@ namespace estet.Pages.LogPages
             Entry_Password.Completed += (s, e) => Entry_RePassword.Focus();
             Entry_RePassword.Completed += (s, e) => RegClick(s, e);
 
+            NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
         }
 
         private async void RegClick(object sender, EventArgs e) //After user clicking on the reg button checking if everything is ok and if so adding user to the database 
                                                                 //database is local atm, will be doing a connection to the SQL server via https+json 
         {
-            User user = new User(Entry_Mail.Text, Entry_Password.Text, Entry_Phone.Text);
-            
-            if (Entry_Mail!=null&&Entry_Phone!=null&&Entry_Password!=null&&Entry_RePassword!=null)
+
+
+            if (!String.IsNullOrEmpty(Entry_Mail.Text)  && !String.IsNullOrEmpty(Entry_Phone.Text)  
+                && !String.IsNullOrEmpty(Entry_Password.Text) && !String.IsNullOrEmpty(Entry_RePassword.Text)) 
             {
-                if (Entry_Password.Text.Equals(Entry_RePassword.Text))
-                {
-                    await DisplayAlert("Регистрация", "Вы успешно зарегистрировались!", "OK");
-                    App.UserDatabase.SaveUser(user);
-                    await DisplayAlert("ID", user.Id.ToString(), "OK");
-                    Application.Current.MainPage = new MasterMenu();
+
+               if (App.UserDatabase.IsUniqueMail(Entry_Mail.Text)) //Something about it
+                                                                    //System.InvalidOperationException: 'Sequence contains no elements' Will fix tomorrow, note for myself
+               {
+
+                    if (Entry_Password.Text.Equals(Entry_RePassword.Text))
+                    {
+                        User user = new User(Entry_Mail.Text, Entry_Password.Text, Entry_Phone.Text);
+                        await DisplayAlert("Регистрация", "Вы успешно зарегистрировались!", "OK");
+                        App.UserDatabase.SaveUser(user);
+                        await DisplayAlert("ID", user.Id.ToString(), "OK");
+                        Globals.Id = user.Id;
+                        Application.Current.MainPage = new MasterMenu();
+                    }
+                    
+                    else await DisplayAlert("Ошибка", "Введённые пароли не совпадают", "OK");
                 }
-                else await DisplayAlert("Ошибка", "Введённые пароли не совпадают", "OK");
+
+               else await DisplayAlert("Ошибка", "Пользователь с такой почтой уже зарегистрирован", "OK");
             }
+
             else
-            {
-                await DisplayAlert("Ошибка", "Ошибка при создании аккаунта, проверьте правильно ли заполнены все поля.", "OK");
-                
-            }
             
+                await DisplayAlert("Ошибка", "Ошибка при создании аккаунта, проверьте правильно ли заполнены все поля.", "OK");
 
         }
 

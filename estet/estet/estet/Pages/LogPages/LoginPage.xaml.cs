@@ -35,6 +35,7 @@ namespace estet.Pages.LogPages
             Entry_Mail.Completed += (s, e) => Entry_Password.Focus();
             Entry_Password.Completed += (s, e) => LoginClick(s, e);
 
+            NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
         }
 
@@ -42,12 +43,16 @@ namespace estet.Pages.LogPages
         {
 
 
-            if (Entry_Mail.Text!=null && Entry_Password.Text!=null)
+            if (Entry_Mail.Text!=null && Entry_Password.Text!=null) // string.isnullorempty here and on registration page
             {
                 if (App.UserDatabase.LoginValidate(Entry_Mail.Text, Entry_Password.Text))
                 {
                     await DisplayAlert("Вход", "Успешно авторизовано", "OK");
-
+                    User currentUser = App.UserDatabase.GetUser(Entry_Mail.Text);
+                    {
+                        if (Convert.ToBoolean(App.UserDatabase.GetUser(currentUser.Id).IntIsDev)) Globals.IsUserDev = true;
+                    }
+                    Globals.Id = currentUser.Id;
                     Application.Current.MainPage = new MasterMenu();
 
                 }

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,20 +19,11 @@ namespace estet.Pages
 		{
 			InitializeComponent ();
 
-            Init();
+            //Init();
 		}
 
-        void Init()
-        {
-            BackgroundColor = Constants.BackgroundColor;
-            
-
-            LogoIcon.HeightRequest = Constants.SmallLogoheight;
-            LogoIcon.WidthRequest = Constants.SmallLogowidth;
-
-            NavigationPage.SetHasBackButton(this, false);
-        }
-
-
-	}
+		void Init()
+		{
+		}
+    }
 }

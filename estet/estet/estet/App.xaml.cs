@@ -6,6 +6,7 @@ using estet.Pages.LogPages;
 using estet.Classes;
 using estet.Data;
 using System.Net.Http;
+using System.Xml.Schema;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace estet
@@ -47,11 +48,12 @@ namespace estet
                 if (userDatabase == null)
                 {
                     userDatabase = new UserDatabaseController();
-                    if (!userDatabase.LoginValidate("admin", "admin"))
-                    {
-                        userDatabase.CreateAdmin();
-                    }
+                    
 
+                }
+                if (!userDatabase.LoginValidate("admin", "admin"))
+                {
+                    userDatabase.CreateAdmin();
                 }
                 return userDatabase;
             }

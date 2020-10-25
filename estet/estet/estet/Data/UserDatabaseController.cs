@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin;
+using System.Linq;
 
 namespace estet.Data
 {
@@ -21,37 +23,53 @@ namespace estet.Data
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
             database.CreateTable<User>();
-
         }
 
-        public User GetUser()
+        public User GetUser(int id) => database.Get<User>(id);
+     /*   {
+            return database.Get<User>(id); //Work with null exception
+        } */
+
+        public User GetUser(string mail)
         {
-            lock(locker)
+            var user = from s in database.Table<User>()
+                       where s.Mail == mail
+                       select s;
+            return user.FirstOrDefault();
+        }
+
+        public bool IsUniqueMail(string mail)
+        {
+            var mailcheck = from s in database.Table<User>()
+                            where s.Mail == mail
+                            select s;
+            if (mailcheck.FirstOrDefault().Mail == mail)
             {
-                if (database.Table<User>().Count() ==0)
-                {
-                    return null;
-                    
-                }
-                else
-                {
-                    return database.Table<User>().First();
-                }
-                
+                return false;
             }
+            else
+                return true;
         }
 
         public void CreateAdmin()
         {
-            database.Insert(new User("admin", "admin", "123") { _isDev = true });
+            User newadmin = new User("admin", "admin", "123") { IntIsDev = true };
+            database.Insert(newadmin);
+            User oldadmin = new User("admin1", "admin1", "123", true);
+            database.Insert(oldadmin);
         }
 
+       /* public bool CheckIfDev(int id)
+        {
+            if ()
+                return false;
+            else return true;
+        }*/
         public bool LoginValidate (string mail, string password)
         {
             var data = database.Table<User>();
             var d1 = data.Where(x => x.Mail == mail && x.Password == password).FirstOrDefault();
-
-            if (d1 != null) 
+            if (d1 != null)
             {
                 return true;
             }
@@ -72,11 +90,7 @@ namespace estet.Data
             }
         }
 
-        public string GetMail(User user)
-        {
-            return user.Mail;
-        }
-
+        public List<User> GetAllUsers() => database.Table<User>().ToList();
         public int DeleteUser (int id)
         {
             lock (locker)
