@@ -46,9 +46,8 @@ namespace estet.Pages.Administration
         private async void UsersOnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var user = (User)e.SelectedItem;
-            await Navigation.PushPopupAsync(new UserPopup(user), true);
-            //MessagingCenter.Subscribe<AdminPage>(this, "Ok");
-            //((ListView)sender).SelectedItem = null;
+            try { await Navigation.PushPopupAsync(new UserPopup(user, sender), true); }
+            catch (NullReferenceException) { }
             /*await DisplayAlert(Convert.ToString(Convert.ToBoolean(user.IntIsDev)), "is dev?", "OK");
             bool answer = await DisplayAlert("Hey", "do you want to delete this user", "Yes", "No");
             if (answer)

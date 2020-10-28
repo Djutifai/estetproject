@@ -11,10 +11,10 @@ namespace estet.Classes
     [Table ("Users")]
     public class User
     {
-        [PrimaryKey, AutoIncrement, Column("ID")]
+        [PrimaryKey, AutoIncrement, Unique, Column("ID")]
         [JsonProperty("ID")]
         public int Id { get; set; }
-        [Column("mail")]
+        [Column("mail"), Unique]
         [JsonProperty("MAIL")]
         public string Mail { get; set; }
         [MaxLength(12),Column("password")]
@@ -44,7 +44,7 @@ namespace estet.Classes
             this.Mail = Mail;
             this.Password = Password;
             this.PhoneNumber = PhoneNumber;
-            IntIsDev = true;
+            IntIsDev = _isDev;
 
         }
 

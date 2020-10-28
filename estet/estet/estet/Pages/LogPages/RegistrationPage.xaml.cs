@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using estet.Classes;
 using estet.Pages.LogPages;
 using estet.Pages.Menu;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace estet.Pages.LogPages
 {
@@ -42,6 +43,11 @@ namespace estet.Pages.LogPages
             NavigationPage.SetHasBackButton(this, false);
         }
 
+        /// <summary>
+        /// Trying to register user with current entries
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void RegClick(object sender, EventArgs e) //After user clicking on the reg button checking if everything is ok and if so adding user to the database 
                                                                 //database is local atm, will be doing a connection to the SQL server via https+json 
         {
@@ -51,24 +57,29 @@ namespace estet.Pages.LogPages
                 && !String.IsNullOrEmpty(Entry_Password.Text) && !String.IsNullOrEmpty(Entry_RePassword.Text)) 
             {
 
-               if (App.UserDatabase.IsUniqueMail(Entry_Mail.Text)) //Something about it
+               //if (App.UserDatabase.IsUniqueMail(Entry_Mail.Text)) //Something about it
                                                                     //System.InvalidOperationException: 'Sequence contains no elements' Will fix tomorrow, note for myself
-               {
+               //{
 
                     if (Entry_Password.Text.Equals(Entry_RePassword.Text))
                     {
                         User user = new User(Entry_Mail.Text, Entry_Password.Text, Entry_Phone.Text);
-                        await DisplayAlert("Регистрация", "Вы успешно зарегистрировались!", "OK");
+                    try
+                    {
                         App.UserDatabase.SaveUser(user);
+                    }
+                    catch (SQLite.SQLiteException)
+                    { await DisplayAlert("Ошибка", "Введённый E-Mail уже зарегистрирован в системе. Введите другой и попробуйте ещё раз.", "OK"); return; }
+                        await DisplayAlert("Регистрация", "Вы успешно зарегистрировались!", "OK");
                         await DisplayAlert("ID", user.Id.ToString(), "OK");
                         Globals.Id = user.Id;
                         Application.Current.MainPage = new MasterMenu();
                     }
                     
                     else await DisplayAlert("Ошибка", "Введённые пароли не совпадают", "OK");
-                }
+               // }
 
-               else await DisplayAlert("Ошибка", "Пользователь с такой почтой уже зарегистрирован", "OK");
+            //   else await DisplayAlert("Ошибка", "Пользователь с такой почтой уже зарегистрирован", "OK");
             }
 
             else

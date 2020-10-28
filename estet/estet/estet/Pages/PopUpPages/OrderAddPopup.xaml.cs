@@ -1,5 +1,4 @@
-﻿using estet.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,26 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using estet.Classes;
 
 namespace estet.Pages.PopUpPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserPopup : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class OrderAddPopup : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public UserPopup()
+        public OrderAddPopup()
         {
             InitializeComponent();
-        }
-
-        private User user;
-        private object sender;
-
-        public UserPopup(User user, object sender)
-        {
-            this.user = user;
-            InitializeComponent();
-            OnClicking(this.user);
-            this.sender = sender;
         }
 
         protected override void OnAppearing()
@@ -34,21 +23,6 @@ namespace estet.Pages.PopUpPages
             base.OnAppearing();
         }
 
-        public void OnClicking(User user)
-        {
-
-            UserId.Text=user.Id.ToString();
-            UserMail.Text = user.Mail;
-        }
-        private void AddOrder(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EditUser(object sender, EventArgs e)
-        {
-
-        }
         protected override void OnDisappearing()
         {
 
@@ -78,11 +52,8 @@ namespace estet.Pages.PopUpPages
         // Invoked after an animation disappearing
         protected override void OnDisappearingAnimationEnd()
         {
-            try { ((ListView)sender).SelectedItem = null; }
-            catch (NullReferenceException) { }
-            return;
+            return base.OnDisappearingAnimationEnd();
         }
-
         protected override Task OnAppearingAnimationBeginAsync()
         {
             return base.OnAppearingAnimationBeginAsync();
@@ -119,7 +90,5 @@ namespace estet.Pages.PopUpPages
             // Return false if you don't want to close this popup page when a background of the popup page is clicked
             return base.OnBackgroundClicked();
         }
-
-
     }
 }

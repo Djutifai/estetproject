@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace estet.Data
 {
-    class OrderDatabaseController
+    public class OrderDatabaseController
     {
         static object locker = new object();
         private SQLiteConnection database;
@@ -18,6 +18,20 @@ namespace estet.Data
             database.CreateTable<Order>();
         }
 
-      //  public Order GetOrder(string id) => database.Get<Order>
+        public Order GetOrder(int id)
+        {
+            var user = from s in database.Table<Order>()
+                       where s.OrderId == id
+                       select s;
+            return user.FirstOrDefault();
+        }
+
+        public void SaveOrder(Order order)
+        {
+            lock (locker)
+            {
+                database.Insert(order);
+            }
+        }
     }
 }

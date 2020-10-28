@@ -16,6 +16,7 @@ namespace estet
 
         static TokenDatabaseController tokenDatabase;
         static UserDatabaseController userDatabase;
+        static OrderDatabaseController orderDatabase;
         private HttpClient _client = new HttpClient();
 
         public App()
@@ -56,6 +57,19 @@ namespace estet
                     userDatabase.CreateAdmin();
                 }
                 return userDatabase;
+            }
+        }
+        public static OrderDatabaseController OrderDatabase
+        {
+            get
+            {
+                if (orderDatabase == null)
+                {
+                    orderDatabase = new OrderDatabaseController();
+
+
+                }
+                return orderDatabase;
             }
         }
 

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="estet.Pages.PopUpPages.OrderAddPopup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinIn"
+            EasingOut="SinOut"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Grid RowSpacing="0" BackgroundColor="RosyBrown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Padding="20,20,0,0" >
+            <Label Text="Клиент" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <!-- Добавить выдвижной список клиентов/поиск (лучше поиск, конечно, а ещё лучше выдвижной список с поиском)-->
+        </StackLayout>
+        <StackLayout Grid.Row="1" Padding="20,20,0,0">
+            <Label Text="Адрес" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry x:Name="EntryAdress" Placeholder="Введите адрес клиента" HorizontalOptions="Fill" />
+        </StackLayout>
+    </Grid>
+</pages:PopupPage>

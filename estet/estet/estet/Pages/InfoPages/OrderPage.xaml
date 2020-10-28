@@ -3,11 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="estet.Pages.OrderPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout x:Name="LogoLayout" VerticalOptions="FillAndExpand">
-                <Image x:Name="LogoIcon" Source="logo.png" Margin="0,20,0,0"/>
+        <Grid RowSpacing="0" BackgroundColor="#FAE207">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+
+
+
+            <BoxView BackgroundColor="#061535" Grid.Row="0"/>
+            <BoxView BackgroundColor="GreenYellow" HeightRequest="100" Grid.Row="1"/>
+            <Label x:Name="OrderName" Text="Заказ #0403"  VerticalOptions="Center" HorizontalOptions="Center" 
+                   Font ="40" FontAttributes="Bold" Grid.Row="1" Padding="25,0,20,0"/>
+            <Grid x:Name="ColumnGrid" Grid.Row="2" BackgroundColor="#FAE207" IsVisible="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 
+                <StackLayout Grid.Column="0">
+                    <Image x:Name="OrderImage" Source="Order.png"/>
+                    <Label x:Name="OrderText" Text="В работе" HorizontalOptions="Center"  FontSize="14" 
+                           FontAttributes="None" TextColor="Black" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" >
+                    <Image x:Name="MakingImage" Source="MakingDone.png" />
+                    <Label x:Name="MakingText" Text="В исполнении" HorizontalOptions="Center"  Font="14" 
+                           FontAttributes="None" TextColor="Black" />
+                </StackLayout>
+                    <StackLayout Grid.Column="2">
+                    <Image x:Name="CheckingImage" Source="Checking.png"/>
+                    <Label x:Name="CheckingText" Text="На проверке" HorizontalOptions="Center"  Font="14" 
+                           FontAttributes="None" TextColor="Black" />
+                </StackLayout>
+                <StackLayout Grid.Column="3">
+                    <Image x:Name="DoneImage" Source="MakingDone.png"/>
+                    <Label x:Name="DoneText" Text="Готово" HorizontalOptions="Center"  Font="14" 
+                           FontAttributes="None" TextColor="Black" />
+                </StackLayout>
+
+
+
+            </Grid>
+            <StackLayout x:Name="LogoLayout" VerticalOptions="FillAndExpand" Grid.Row="0">
+                <Image x:Name="LogoIcon" Source="logo.png" Margin="0,20,0,10" HeightRequest="67" WidthRequest="70"/>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -26,10 +26,11 @@
         <Label Text="ID пользователя"/>
         <Label Text="" x:Name="UserId"/>
         <Label Text="Почта пользователя"/>
-        <Entry Text="" x:Name="UserMail"/>
-        <Label Text="Is this user dev?"/>
-        <Label Text="" x:Name="UserDev" Padding="0,0,0,10"/>
-        <Button Text="Save user" Clicked="ButtonClicked"/>
+        <Label Text="" x:Name="UserMail"/>
+        <StackLayout>
+        <Button Text="Добавить заказ" Clicked="AddOrder"/>
+            <Button Text="Редактировать пользователя" Clicked="EditUser"/>
+        </StackLayout>
     </StackLayout>
     
 </pages:PopupPage>

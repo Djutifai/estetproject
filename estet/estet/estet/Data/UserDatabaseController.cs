@@ -38,25 +38,10 @@ namespace estet.Data
             return user.FirstOrDefault();
         }
 
-        public bool IsUniqueMail(string mail)
-        {
-            var mailcheck = from s in database.Table<User>()
-                            where s.Mail == mail
-                            select s;
-            if (mailcheck.FirstOrDefault().Mail == mail)
-            {
-                return false;
-            }
-            else
-                return true;
-        }
-
         public void CreateAdmin()
         {
-            User newadmin = new User("admin", "admin", "123") { IntIsDev = true };
+            User newadmin = new User("admin", "admin", "123",true);
             database.Insert(newadmin);
-            User oldadmin = new User("admin1", "admin1", "123", true);
-            database.Insert(oldadmin);
         }
 
        /* public bool CheckIfDev(int id)
